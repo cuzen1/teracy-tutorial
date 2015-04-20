@@ -13,6 +13,8 @@ admin.autodiscover()
 
 urlpatterns += (
     url(r'^admin/', include(admin.site.urls)),
+    url(r'', include('apps.hello.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
+

@@ -7,6 +7,7 @@ django-nose==1.2
 flake8==2.0
 pylint==1.0.0
 tox==1.6.0
+teracy-django-html5-boilerplate==0.3.0
 
 -r project/common.txt
 -r project/dev.txt

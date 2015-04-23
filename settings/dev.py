@@ -41,7 +41,9 @@ INSTALLED_APPS += (
     'django.contrib.admin',
     'debug_toolbar',
     'django_nose',
-    'polls',
+    'apps.polls',
+    'teracy.html5boilerplate',
+    'apps.hello',
 )
 
 # Use nose to run all tests

@@ -32,17 +32,16 @@ class PollMethodTests(TestCase):
 	    recent_poll = Poll(pub_date=timezone.now() - datetime.timedelta(hours=1))
 	    self.assertEqual(recent_poll.was_published_recently(), True)
 
-	    def create_poll(question, days):
-    """
-    Creates a poll with the given `question` published the given number of
-    `days` offset to now (negative for polls published in the past,
-    positive for polls that have yet to be published).
-    """
-    return Poll.objects.create(question=question,
-        pub_date=timezone.now() + datetime.timedelta(days=days))
+	def create_poll(question, days):
+	    """
+	    Creates a poll with the given `question` published the given number of
+	    `days` offset to now (negative for polls published in the past,
+	    positive for polls that have yet to be published).
+   		"""
+    	return Poll.objects.create(question=question,
+      	pub_date=timezone.now() + datetime.timedelta(days=days))
 
 class PollViewTests(TestCase):
-	
     def test_index_view_with_no_polls(self):
         """
         If no polls exist, an appropriate message should be displayed.

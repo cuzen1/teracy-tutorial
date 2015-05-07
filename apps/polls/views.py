@@ -1,11 +1,27 @@
 from django.http import HttpResponse
 from django.template import RequestContext, loader
-from apps.polls.models import Poll
-from apps.polls.models import Choice
+from apps.polls.models import Poll, Choice
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.views import generic
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_poll_list'
+
+    def get_queryset(self):
+        """Return the last five published polls."""
+        return Poll.objects.order_by('-pub_date')[:5]
+
+class DetailView(generic.DetailView):
+    model = Poll
+    template_name = 'polls/details.html'
+
+class ResultsView(generic.DetailView):
+    model = Poll
+    template_name = 'polls/results.html'
 
 def index(request):
     latest_poll_list = Poll.objects.all().order_by('-pub_date')[:5]
